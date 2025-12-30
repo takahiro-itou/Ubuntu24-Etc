@@ -5,6 +5,25 @@ exec tail -n +3 $0
 # the 'exec tail' line above.
 #
 
+menuentry "Paragon Backup & Recovery 2017 Free WinsdowsPE (on /dev/sda10)" {
+    insmod search_label
+    insmod chain
+    set root='hd0,gpt10'
+    if [ x$feature_platform_search_hint = xy ]; then
+        search --no-floppy --set=root --hint-bios=hd0,gpt10 --hint-efi=hd0,gpt10 --hint-baremetal=ahci0,gpt10  --fs-uuid DB13-8030
+    else
+        search --no-floppy --set=root  --fs-uuid A021-A430
+    fi
+    chainloader /EFI/BOOT/BOOTX64.EFI
+}
+
+menuentry "Paragon Backup & Recovery 2017 Free WinsdowsPE (on PARAGON)" {
+    insmod search_label
+    insmod chain
+    search --no-floppy --set=root --label PARAGON
+    chainloader /EFI/BOOT/BOOTX64.EFI
+}
+
 ##===============================
 ##  Reboot/Shutdown
 ##===============================
