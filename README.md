@@ -1,0 +1,6 @@
+#
+
+```
+sudo update-grub
+```
+
